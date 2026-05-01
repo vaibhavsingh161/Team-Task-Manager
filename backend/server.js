@@ -1,4 +1,5 @@
 // backend/server.js
+
 import express from "express";
 import authRoutes from "./routes/authRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
@@ -15,8 +16,14 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+
 app.use(cors({
-  origin: "*", 
+  origin: [
+    "http://localhost:5173",
+    "https://team-task-manager-xi-eight.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
 
 app.use("/api/auth", authRoutes);
